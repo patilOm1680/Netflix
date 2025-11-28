@@ -1,0 +1,7 @@
+.homeContainer .bannerImg {
+    background-image: url("../../assets/Home/backgroundBanner.jpg");
+
+    mask: linear-gradient(black, black, transparent);
+    backdrop-filter: blur(2px);
+
+}

@@ -1,0 +1,9 @@
+.video-wrapper {
+  /* Prevent pointer events (clicks, hovers) from reaching the ReactPlayer iframe */
+  pointer-events: none; 
+  width: 100vw;
+}
+
+.ytp-iv-video-content{
+    width: 800px !important;
+}
