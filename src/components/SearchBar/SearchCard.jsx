@@ -7,6 +7,7 @@ import Fade from '@mui/material/Fade';
 import CancelRoundedIcon from '@mui/icons-material/CancelRounded';
 import shadow from "../../assets/Home/Shadow.png"
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
+import { useNavigate } from 'react-router-dom';
 
 const style = {
     position: 'absolute',
@@ -45,6 +46,13 @@ const SearchCard = ({ movie, index }) => {
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
+
+     const navigate=useNavigate();
+    const handlePlay = () => {
+        console.log(movie.id)
+        const movieId=movie.id;
+      navigate('/play',{state:{movieId}})
+    }
     return (
         <>
 
@@ -140,7 +148,7 @@ const SearchCard = ({ movie, index }) => {
                             }
 
                             <div className='ps-8'>
-                                <button className="bg-red-600 w-[157px] h-12 text-white text-[20px] cursor-pointer py-2 ps-0 pe-4  rounded">
+                                <button className="bg-red-600 w-[157px] h-12 text-white text-[20px] cursor-pointer py-2 ps-0 pe-4  rounded" onClick={handlePlay}>
                                     <PlayArrowIcon fontSize='large' sx={{ marginRight: "3px" }} />
                                     Play
 

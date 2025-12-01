@@ -69,6 +69,7 @@ const SpecialCard = ({ movie, index, hoveredIndex, setHoveredIndex }) => {
             toast.info(`Already in watchlist`, { autoClose: 1500 });
         }
     };
+    
      const navigate=useNavigate();
     const handlePlay = () => {
         const movieId=movie.id;

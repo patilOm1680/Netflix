@@ -17,6 +17,7 @@ import Upcomingshows from '../../components/Web-Series-Section/UpcomingShows';
 import TopRatedMovies from '../../components/Movies-Section/TopRatedMovies';
 import TVshowSkeleton from '../TVShows/TVshowSkeleton';
 import UserContext from '../../context/UserContext';
+import { useNavigate } from 'react-router-dom';
 
 function MoviesPage() {
    const { isMoviesLoading, setIsMovieLoading } = useContext(UserContext)
@@ -27,6 +28,12 @@ function MoviesPage() {
     
     
   }, [isMoviesLoading]);
+
+  const navigate=useNavigate();
+    const handlePlay = () => {
+    const movieId="1062722"
+      navigate('/play',{state:{movieId}})
+    }
   return (
     <>
     {isMoviesLoading?<TVshowSkeleton/>
@@ -80,11 +87,11 @@ function MoviesPage() {
 
 
             <div className="flex items-center gap-4 mb-7">
-              <button className="flex items-center gap-3 bg-white text-black font-bold px-10 py-3 rounded text-lg hover:bg-gray-200 transition">
+              <button className="flex items-center gap-3 bg-white text-black font-bold px-10 py-3 rounded text-lg hover:bg-gray-200 transition cursor-pointer" onClick={handlePlay}>
                 <PlayArrowIcon />
                 Play
               </button>
-              <button className="flex items-center gap-3 bg-gray-600 bg-opacity-70 text-white font-semibold px-8 py-3 rounded text-lg hover:bg-opacity-50 transition">
+              <button className="flex items-center gap-3 bg-gray-600 bg-opacity-70 text-white font-semibold px-8 py-3 rounded text-lg hover:bg-opacity-50 transition cursor-pointer">
                 <InfoIcon />
                 More Info
               </button>

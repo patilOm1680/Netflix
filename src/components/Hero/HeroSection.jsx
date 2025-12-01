@@ -4,8 +4,15 @@ import shadow from "../../assets/Home/Shadow.png"
 import homeBanner from "../../assets/Home/HomeBanner.png"
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import OndemandVideoIcon from '@mui/icons-material/OndemandVideo';
+import { useNavigate } from 'react-router-dom';
 
 function HeroSection() {
+    
+    const navigate=useNavigate();
+    const handlePlay = () => {
+    const movieId="689249"
+      navigate('/play',{state:{movieId}})
+    }
   return (
     <>
     <div className='flex mx-16 pt-22'>
@@ -15,7 +22,7 @@ function HeroSection() {
                 <img className='h-[370px] w-[520px] object-cover' src={posterText} alt=""/>
             </div>
             <div className='flex items-center gap-6'>
-                <button className='text-white text-2xl cursor-pointer  bg-[#D63A1F] ps-1 pe-4 py-2 rounded-3xl w-[180px]'><PlayArrowIcon fontSize='large'/> Play</button>
+                <button className='text-white text-2xl cursor-pointer  bg-[#D63A1F] ps-1 pe-4 py-2 rounded-3xl w-[180px]' onClick={handlePlay}><PlayArrowIcon fontSize='large'/> Play</button>
                 <button className='text-black text-2xl cursor-pointer bg-white px-3 py-2 rounded-3xl w-[180px]'> <OndemandVideoIcon sx={{marginRight:"3px"}}/> Trailer</button>
             </div>
         </div>
