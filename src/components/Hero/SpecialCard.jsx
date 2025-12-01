@@ -11,6 +11,7 @@ import AddCircleOutlinedIcon from '@mui/icons-material/AddCircleOutlined';
 import UserContext from '../../context/UserContext';
 import "../Carousel/carsouselCard.css"
 import { ToastContainer, toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 
 
 const style = {
@@ -68,6 +69,11 @@ const SpecialCard = ({ movie, index, hoveredIndex, setHoveredIndex }) => {
             toast.info(`Already in watchlist`, { autoClose: 1500 });
         }
     };
+     const navigate=useNavigate();
+    const handlePlay = () => {
+        const movieId=movie.id;
+      navigate('/play',{state:{movieId}})
+    }
 
     return (
         <>
@@ -163,7 +169,7 @@ const SpecialCard = ({ movie, index, hoveredIndex, setHoveredIndex }) => {
 
 
                             <div className='ps-8 flex gap-6 items-center'>
-                                <button className="bg-red-600 w-[157px] h-12 text-white text-[20px] cursor-pointer py-2 ps-0 pe-4  rounded">
+                                <button className="bg-red-600 w-[157px] h-12 text-white text-[20px] cursor-pointer py-2 ps-0 pe-4  rounded" onClick={handlePlay}>
                                     <PlayArrowIcon fontSize='large' sx={{ marginRight: "3px" }} />
                                     Play
 

@@ -3,6 +3,7 @@ import { Route, Routes } from 'react-router-dom'
 import './App.css'
 import Navbar from './pages/Navbar/Navbar';
 import { useState,lazy,Suspense } from 'react';
+import PlayVideo from './pages/Play/PlayVideo';
 
 const Home = lazy(() => import("./pages/Home/Home"));
 const Login = lazy(() => import("./components/Fomrs/Login/Login"));
@@ -30,7 +31,7 @@ function App() {
       <Route path='/search-result' element={<SearchResult/>}/>
       <Route path='/my-list' element={<MyList/>}/>
       <Route path='/search-not-found' element={<SearchNotFound/>}/>
-       
+       <Route path='/play' element={<PlayVideo/>}/>
     </Routes>
     </Suspense>
     </>

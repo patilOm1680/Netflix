@@ -7,14 +7,20 @@ export default function SearchBar() {
     const [searchData, setSearchData] = useState([]);
     const handleChange = (event) => {
         setInput(event.target.value);
-
+        // setTimeout(() => {
+        //   handleSearchClick()
+        // }, 2000)
+        
     }
+    
     const navigate = useNavigate();
+
     const structureInput = (input) => {
         return input;
     }
 
     useEffect(() => {
+        
         const searchInput = structureInput(input);
         const url = `${import.meta.env.VITE_SearchUrl}?api_key=${import.meta.env.VITE_ApiKey}&query=${searchInput}`
         axios.get(url)

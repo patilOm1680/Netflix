@@ -13,6 +13,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import "./carsouselCard.css"
 import { minHeight } from '@mui/system';
 import LazyImage from './LazyImage';
+import { useNavigate } from 'react-router-dom';
 
 const style = {
     position: 'absolute',
@@ -69,6 +70,12 @@ const CarouselCard = ({ movie, index, hoveredIndex, setHoveredIndex }) => {
             toast.info(`Already in watchlist`, { autoClose: 1500 });
         }
     };
+    const navigate=useNavigate();
+    const handlePlay = () => {
+        const movieId=movie.id;
+      navigate('/play',{state:{movieId}})
+    }
+    
 
     return (
         <>
@@ -168,7 +175,7 @@ const CarouselCard = ({ movie, index, hoveredIndex, setHoveredIndex }) => {
                             }
 
                             <div className='ps-8 flex gap-6 items-center'>
-                                <button className="bg-red-600 w-[157px] h-12 text-white text-[20px] cursor-pointer py-2 ps-0 pe-4  rounded">
+                                <button className="bg-red-600 w-[157px] h-12 text-white text-[20px] cursor-pointer py-2 ps-0 pe-4  rounded" onClick={handlePlay}>
                                     <PlayArrowIcon fontSize='large' sx={{ marginRight: "3px" }} />
                                     Play
 
