@@ -1,4 +1,4 @@
-# 🛒 ShopeEase | Ecommerce Web App - [(Link)](https://shope-ease-nu.vercel.app/)
+# 🍿 Netflix | Streaming Platform - [(Link)](https://netflix-two-lovat.vercel.app/)
 
 This is a Netflix Clone application built using **React.js**, **Tailwind CSS**, **Context Api** to replicate the user interface and functionality of Netflix.
 
