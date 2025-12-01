@@ -23,7 +23,7 @@ ShopeEase is Modern, Responsive online Ecommerce store where users can browse, s
 - Add Movies to WatchList
 - LocalStorage to Store the credentials
 - Global Store(Context Api)
-- Real-Time Data: Fetches data from the [TMDb API](https://www.themoviedb.org/documentation/api).
+- Real-Time Data [TMDb API](https://www.themoviedb.org/documentation/api).
 
 
 
@@ -91,13 +91,12 @@ VITE_SearchUrl=https://api.themoviedb.org/3/search/movie
 ```
 
 ## Screenshots
-![App Screenshot](./public/AppScreenShots/SS1.png)
-![App Screenshot](./public/AppScreenShots/SS2.png)
-![App Screenshot](./public/AppScreenShots/SS3.png)
-![App Screenshot](./public/AppScreenShots/SS4.png)
-![App Screenshot](./public/AppScreenShots/SS5.png)
-![App Screenshot](./public/AppScreenShots/SS7.png)
-![App Screenshot](./public/AppScreenShots/SS8.png)
+![App Screenshot](./src/assets/Readme/HomeAlogin.png)
+![App Screenshot](./src/assets/Readme/TvShows.png)
+![App Screenshot](./src/assets/Readme/NumberedCard.png)
+![App Screenshot](./src/assets/Readme/modal.png)
+![App Screenshot](./src/assets/Readme/searchResult.png)
+![App Screenshot](./src/assets/Readme/WatchList.png)
 
 
 ## 📄 License
