@@ -12,6 +12,7 @@ import UserContext from '../../context/UserContext';
 import "../Carousel/carsouselCard.css"
 import { ToastContainer, toast } from 'react-toastify';
 
+
 const style = {
     position: 'absolute',
     top: '50%',

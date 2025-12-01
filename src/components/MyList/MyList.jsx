@@ -30,7 +30,7 @@ function MyList() {
                                             <h2 className="text-4xl font-bold tracking-tight text-white">Your Watchlist is Empty</h2>
                                             <p className="max-w-md text-sm text-neutral-400">Add shows and movies to your list to easily find them later. Just look for the plus icon on any title!</p>
                                         </div>
-                                        <button className="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-md h-10 px-6 bg-primary text-white text-sm font-bold tracking-wide transition-transform hover:scale-105 bg-red-600" onClick={handleHomeClick}>
+                                        <button className="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-md h-10 px-6 py-4 bg-primary text-white text-[20px] font-bold tracking-wide transition-transform hover:scale-105 bg-red-600" onClick={handleHomeClick}>
                                             <span className=''>Find Something to Watch</span>
                                         </button>
                                     </div>
