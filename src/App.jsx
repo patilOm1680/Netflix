@@ -1,14 +1,16 @@
 
 import { Route, Routes } from 'react-router-dom'
 import './App.css'
-import Home from './pages/Home/Home'
-import Login from './components/Fomrs/Login/Login'
 import Navbar from './pages/Navbar/Navbar';
-import { useState } from 'react';
-import TVShowPage from './pages/TVShows/TVShowPage';
-import MoviesPage from './pages/Movies/MoviesPage';
-import SearchResult from './components/SearchBar/SearchResult';
-import MyList from './components/MyList/MyList';
+import { useState,lazy,Suspense } from 'react';
+
+const Home = lazy(() => import("./pages/Home/Home"));
+const Login = lazy(() => import("./components/Fomrs/Login/Login"));
+const TVShowPage = lazy(() => import("./pages/TVShows/TVShowPage"));
+const MoviesPage = lazy(() => import("./pages/Movies/MoviesPage"));
+const SearchResult = lazy(() => import("./components/SearchBar/SearchResult"));
+const MyList = lazy(() => import("./components/MyList/MyList"));
+const SearchNotFound = lazy(() => import("./pages/Search/SearchNotFound"));
 
 function App() {
   
@@ -16,15 +18,21 @@ function App() {
 
   return (
     <>
+    <Suspense fallback={<div>Loading please wait...</div>}>
     <Routes>
+      
+
+     
       <Route path='/' element={<Home/>}/>
       <Route path='/login' element={<Login/>}/>
       <Route path='/shows' element={<TVShowPage/>}/>
       <Route path='/movies' element={<MoviesPage/>}/>
       <Route path='/search-result' element={<SearchResult/>}/>
       <Route path='/my-list' element={<MyList/>}/>
-
+      <Route path='/search-not-found' element={<SearchNotFound/>}/>
+       
     </Routes>
+    </Suspense>
     </>
   )
 }

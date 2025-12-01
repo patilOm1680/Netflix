@@ -16,7 +16,7 @@ import Logout from '@mui/icons-material/Logout';
 import "./Navbar.css"
 import UserContext from '../../context/UserContext';
 import SearchBar from '../../components/SearchBar/SearchBar';
-
+import { ToastContainer, toast } from 'react-toastify';
 
 const Navbar = () => {
   const { setIsLogin } = useContext(UserContext)
@@ -128,10 +128,10 @@ const Navbar = () => {
                 anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
               >
                 <MenuItem onClick={handleClose}>
-                  <Avatar /> Profile
+                  <Avatar /> {JSON.parse(localStorage.getItem("user")).email}
                 </MenuItem>
                 <MenuItem onClick={handleClose}>
-                  <Avatar /> My account
+                  <Avatar /> Subscription
                 </MenuItem>
                 <Divider />
                 <MenuItem onClick={handleClose}>
@@ -158,6 +158,7 @@ const Navbar = () => {
 
         </div>
       </div>
+      {/* <ToastContainer /> */}
     </div>
 
   )

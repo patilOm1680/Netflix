@@ -3,7 +3,7 @@ import React from 'react'
 function Footer() {
     return (
         <>
-            <div className="pb-20 text-[16px] text-gray-400">
+            <div className="pb-20 text-[16px] text-gray-400 ">
                 <div className="  underline">
                     <div className="mb-10">Questions? Contact us.</div>
                     <div className="flex justify-between">

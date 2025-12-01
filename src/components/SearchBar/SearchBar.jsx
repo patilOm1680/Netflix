@@ -25,12 +25,15 @@ export default function SearchBar() {
 
     }, [input]);
 
+    
     const handleSearchClick = () => {
         if (searchData.length > 0) {
             navigate("/search-result", { state: { Data: searchData } })
-            console.log(searchData)
+            // console.log(searchData)
+        }else{
+            navigate("/search-not-found",{state:{input}})
         }
-        console.log("clicked search...")
+        // console.log("clicked search...")
     }
 
 

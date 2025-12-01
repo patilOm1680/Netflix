@@ -10,8 +10,9 @@ import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import AddCircleOutlinedIcon from '@mui/icons-material/AddCircleOutlined';
 import UserContext from '../../context/UserContext';
 import { ToastContainer, toast } from 'react-toastify';
-
-
+import "./carsouselCard.css"
+import { minHeight } from '@mui/system';
+import LazyImage from './LazyImage';
 
 const style = {
     position: 'absolute',
@@ -19,7 +20,7 @@ const style = {
     left: '50%',
     transform: 'translate(-50%, -50%)',
     width: "668px",
-    height: "610px",
+    minHeight: "610px",
     bgcolor: 'black',
     boxShadow: 24,
     outline: "none",
@@ -30,7 +31,7 @@ const CarouselCard = ({ movie, index, hoveredIndex, setHoveredIndex }) => {
     const [genre, setGenre] = useState([]);
 
     React.useEffect(() => {
-        const url=`${import.meta.env.VITE_Genre}?api_key=${import.meta.env.VITE_ApiKey}`
+        const url = `${import.meta.env.VITE_Genre}?api_key=${import.meta.env.VITE_ApiKey}`
         axios.get(url)
             .then((response) => {
                 setGenre(response.data.genres);
@@ -39,7 +40,7 @@ const CarouselCard = ({ movie, index, hoveredIndex, setHoveredIndex }) => {
 
 
     const findGenre = (id) => {
-        
+
         for (let obj of genre) {
             if (obj.id == id) return obj.name;
         }
@@ -51,17 +52,24 @@ const CarouselCard = ({ movie, index, hoveredIndex, setHoveredIndex }) => {
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
 
-    const {setWatchListData,watchListData}=useContext(UserContext)
-    const handleWatchlist = () => {
-        toast.success(`Added to watchlist`, {
-        autoClose: 1500
-      })
-        let updatedData=[...watchListData,movie]
-      setWatchListData(updatedData);
-    //   console.log(watchListData)
-    
+    const { setWatchListData, watchListData } = useContext(UserContext)
+    const isAlreadyPresent = (movieId) => {
+        for (let obj of watchListData) {
+            if (movieId === obj.id) return true;
+        }
+        return false;
     }
-    
+
+    const handleWatchlist = () => {
+        if (!isAlreadyPresent(movie.id)) {
+            let updatedData = ([...watchListData, movie])
+            setWatchListData(updatedData);
+            toast.success(`Added to watchlist`, { autoClose: 1500 });
+        } else {
+            toast.info(`Already in watchlist`, { autoClose: 1500 });
+        }
+    };
+
     return (
         <>
 
@@ -76,7 +84,7 @@ const CarouselCard = ({ movie, index, hoveredIndex, setHoveredIndex }) => {
                 onMouseLeave={() => setHoveredIndex(null)}
                 onClick={handleOpen}
             >
-                <img
+                <LazyImage
                     src={`${import.meta.env.VITE_ImageBaseUrl}${movie.poster_path}`}
                     alt={movie.title || movie.original_name}
                     loading='lazy'
@@ -105,7 +113,7 @@ const CarouselCard = ({ movie, index, hoveredIndex, setHoveredIndex }) => {
                 }}
             >
                 <Fade in={open}>
-                    <Box sx={style}>
+                    <Box sx={style} className='pb-3'>
                         {/* {console.log(movie)} */}
                         <div className='relative flex flex-col gap-4 bg-black text-white'>
                             <div className='absolute top-2 right-2  z-50 cursor-pointer'>
@@ -116,10 +124,10 @@ const CarouselCard = ({ movie, index, hoveredIndex, setHoveredIndex }) => {
                                 <img className='w-full absolute bottom-0' src={shadow} alt="shadow" />
 
                             </div>
-                            <div className='mt-[-23px] top-86 text-5xl font-bold font-serif ps-8'>
+                            <div className='mt-[-23px] top-86 text-5xl font-bold font-serif px-8'>
                                 {movie.title || movie.original_name}
                             </div>
-                            <div className='flex ms-8 gap-2'>
+                            <div className='flex mx-8 gap-2'>
                                 {
                                     (movie.release_date) &&
                                     <span className='bg-[#414141] px-2 rounded'>
@@ -130,11 +138,14 @@ const CarouselCard = ({ movie, index, hoveredIndex, setHoveredIndex }) => {
                                 {(movie.genre_ids.length !== 0) &&
                                     movie.genre_ids.map((id, index) => {
 
-                                        if (index >= 0 && index <= 3) {
-                                            return <span key={index} className='bg-[#414141] px-2 rounded'>
-                                                {findGenre(id)}
-                                                {/* {console.log(findGenre(id))} */}
-                                            </span>
+                                       if (index >= 0 && index <= 3) {
+                                            return <>{findGenre(id) && <span key={index} className='bg-[#414141] px-2 rounded'>
+                                                    {findGenre(id)}
+
+                                                </span>
+                                                }
+                                          </>
+
                                         } else return;
                                     })
                                 }
@@ -149,7 +160,7 @@ const CarouselCard = ({ movie, index, hoveredIndex, setHoveredIndex }) => {
                                 </span>
                             </div>
 
-                            { (movie.overview) &&
+                            {(movie.overview) &&
                                 <div className='px-8 text-justify max-h-[50px] overflow-hidden'>
                                     {movie.overview}
                                 </div>
@@ -162,16 +173,21 @@ const CarouselCard = ({ movie, index, hoveredIndex, setHoveredIndex }) => {
                                     Play
 
                                 </button>
-                                <AddCircleOutlinedIcon sx={{fontSize:"50px",cursor:"pointer"}}
-                                onClick={handleWatchlist} 
+                                <AddCircleOutlinedIcon sx={{ fontSize: "50px", cursor: "pointer" }}
+                                    onClick={handleWatchlist}
                                 />
                             </div>
-                            
+
                         </div>
+                        <ToastContainer className="toast-position" />
                     </Box>
+
                 </Fade>
+
+
             </Modal>
-            
+
+
 
         </>
     )

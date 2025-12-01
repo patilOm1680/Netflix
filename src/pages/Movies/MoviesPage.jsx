@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
 import Navbar from '../Navbar/Navbar';
 import TrendingNow from '../../components/cardsSections/TrendingNow';
 import PopularNow from '../../components/cardsSections/PopularNow';
@@ -15,10 +15,23 @@ import PopularTV from '../../components/Web-Series-Section/PopularTV';
 import TrendingTV from '../../components/Web-Series-Section/TrendingTV';
 import Upcomingshows from '../../components/Web-Series-Section/UpcomingShows';
 import TopRatedMovies from '../../components/Movies-Section/TopRatedMovies';
+import TVshowSkeleton from '../TVShows/TVshowSkeleton';
+import UserContext from '../../context/UserContext';
 
 function MoviesPage() {
+   const { isMoviesLoading, setIsMovieLoading } = useContext(UserContext)
+  useEffect(() => {
+    setTimeout(() => {
+      setIsMovieLoading(false)
+    }, 1000)
+    
+    
+  }, [isMoviesLoading]);
   return (
     <>
+    {isMoviesLoading?<TVshowSkeleton/>
+    :
+      <div>
     
           <Navbar/>
       
@@ -114,7 +127,10 @@ function MoviesPage() {
         </div>
         <Footer />
       </div>
+    </div>
+  }
     </>
+    
 
   );
 }

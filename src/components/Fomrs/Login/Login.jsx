@@ -8,19 +8,19 @@ import UserContext from '../../../context/UserContext'
 
 function Login() {
 
-    const location=useLocation();
-    const navigate=useNavigate();
+    const location = useLocation();
+    const navigate = useNavigate();
 
-    const {getEmail}=location.state;
+    const { getEmail } = location.state;
     const [emailOrPhone, setEmailOrPhone] = useState(getEmail);
     const [password, setPassword] = useState("");
 
     const [isLoading, setLoading] = useState(false);
-    const {setIsLogin}=useContext(UserContext);
+    const { setIsLogin } = useContext(UserContext);
     const [isWrongCredentials, setIsWrongCredentials] = useState(false);
 
-    
-    
+
+
     const handleEmailChange = (event) => {
         setEmailOrPhone(event.target.value);
         //   console.log(emailOrPhone)
@@ -39,8 +39,8 @@ function Login() {
         setTimeout(() => {
             if ((emailOrPhone === credentials.email || emailOrPhone === credentials.phoneNo) && password === credentials.password) {
                 // console.log("Authentication done")
-                localStorage.setItem("user",JSON.stringify(credentials));
-                localStorage.setItem("isLogin","true");
+                localStorage.setItem("user", JSON.stringify(credentials));
+                localStorage.setItem("isLogin", "true");
                 setIsLogin("true");
                 navigate("/")
 
@@ -55,17 +55,17 @@ function Login() {
         }, 2000)
 
     }
-    
+
     const handleLogoClick = () => {
-      navigate('/')
+        navigate('/')
     }
-    
+
 
     return (
         <>
             <div className='loginContainer'>
                 <nav>
-                    <img src={logo} alt="logo" className='h-16 cursor-pointer' onClick={handleLogoClick}/>
+                    <img src={logo} alt="logo" className='h-16 cursor-pointer' onClick={handleLogoClick} />
                 </nav>
                 <div class="form-wrapper">
                     <h2 >Sign In</h2>

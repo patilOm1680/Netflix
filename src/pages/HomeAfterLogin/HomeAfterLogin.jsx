@@ -1,4 +1,4 @@
-import React,{useState} from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import Navbar from '../Navbar/Navbar'
 import HeroSection from '../../components/Hero/HeroSection'
 import Trending from '../../components/Trending/Trending'
@@ -13,50 +13,65 @@ import instaImg from "../../assets/Footer/Instagram.png"
 import twitterImg from "../../assets/Footer/Twitter.png"
 import youtubeImg from "../../assets/Footer/YouTube.png"
 import { ToastContainer, toast } from 'react-toastify';
+import UserContext from '../../context/UserContext'
+import TVshowSkeleton from '../TVShows/TVshowSkeleton'
 
 function HomeAfterLogin() {
 
+  const { isHomeLoading, setIsHomeLoading } = useContext(UserContext)
+  useEffect(() => {
+    setTimeout(() => {
+      setIsHomeLoading(false)
+    }, 1000)
+
+
+  }, [isHomeLoading]);
+
   return (
     <>
-    <div className='min-h-screen'>
-        <Navbar/>
+      {
+        isHomeLoading ? <TVshowSkeleton /> :
+          <div className='min-h-screen bg-black'>
+            <Navbar />
 
-      
-        
-        <HeroSection/>
-        <div className='mx-14 mb-10 mt-4'>
-            <PopularNow/>
-        </div>
-        <div className='mx-14 mb-10'>
-            <TrendingNow/>
-        </div>
-        <div className='mx-14 mb-10'>
-            <TopRatedTV/>
-        </div>
-         <div className='mx-14 mb-10'>
-            <UpcomingMovies/>
-        </div>
-        <div className='px-20 pt-20'>
-          <div className='flex gap-22 mb-7'>
-            <div>
-              <img src={facebookImg} alt="facebook logo" />
+
+
+            <HeroSection />
+            <div className='mx-14 mb-10 mt-4'>
+              <PopularNow />
             </div>
-            <div>
-              <img src={twitterImg} alt="facebook logo" />
+            <div className='mx-14 mb-10'>
+              <TrendingNow />
             </div>
-            <div>
-              <img src={instaImg} alt="facebook logo" />
+            <div className='mx-14 mb-10'>
+              <TopRatedTV />
             </div>
-            <div>
-              <img src={youtubeImg} alt="facebook logo" />
+            <div className='mx-14 mb-10'>
+              <UpcomingMovies />
             </div>
+            <div className='px-20 pt-20'>
+              <div className='flex gap-22 mb-7'>
+                <div>
+                  <img src={facebookImg} alt="facebook logo" />
+                </div>
+                <div>
+                  <img src={twitterImg} alt="facebook logo" />
+                </div>
+                <div>
+                  <img src={instaImg} alt="facebook logo" />
+                </div>
+                <div>
+                  <img src={youtubeImg} alt="facebook logo" />
+                </div>
+              </div>
+              <Footer />
+            </div>
+
+
           </div>
-          <Footer/>
-        </div>
-        
-        
-    </div>
-    <ToastContainer />
+      }
+
+      {/* <ToastContainer /> */}
     </>
   )
 }

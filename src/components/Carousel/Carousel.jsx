@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react'
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 import CarouselCard from './CarouselCard';
-
+// import { ToastContainer, toast } from 'react-toastify';
 
 
 function Carousel({ topicName, movies }) {
@@ -82,7 +82,7 @@ function Carousel({ topicName, movies }) {
           display: none;
         }
       `}</style>
-      
+      {/* <ToastContainer /> */}
     </div>
   )
 }

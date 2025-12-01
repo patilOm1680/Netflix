@@ -63,7 +63,6 @@ function HeroCarsouel({ topicName, movies }) {
             ))}
           </div>
 
-          {/* Right Arrow */}
           {showRightButton && (
             <button
               onClick={() => scroll('right')}

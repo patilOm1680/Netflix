@@ -9,50 +9,65 @@ import shadow from "../../assets/Home/Shadow.png"
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import AddCircleOutlinedIcon from '@mui/icons-material/AddCircleOutlined';
 import UserContext from '../../context/UserContext';
+import "../Carousel/carsouselCard.css"
+import { ToastContainer, toast } from 'react-toastify';
 
 const style = {
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  width: "668px",
-  height: "610px",
-  bgcolor: 'black',
-  boxShadow: 24,
-  outline: "none",
-  border: "2px solid #757574"
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: "668px",
+    height: "610px",
+    bgcolor: 'black',
+    boxShadow: 24,
+    outline: "none",
+    border: "2px solid #757574"
 
 };
-const SpecialCard = ({movie,index,hoveredIndex,setHoveredIndex}) => {
-     const [genre, setGenre] = useState([]);
+const SpecialCard = ({ movie, index, hoveredIndex, setHoveredIndex }) => {
+    const [genre, setGenre] = useState([]);
 
-  React.useEffect(() => {
-    const url=`${import.meta.env.VITE_Genre}?api_key=${import.meta.env.VITE_ApiKey}`
-    axios.get(url)
-      .then((response) => {
-        setGenre(response.data.genres);
-      })
-  }, []);
+    React.useEffect(() => {
+        const url = `${import.meta.env.VITE_Genre}?api_key=${import.meta.env.VITE_ApiKey}`
+        axios.get(url)
+            .then((response) => {
+                setGenre(response.data.genres);
+            })
+    }, []);
 
 
-  const findGenre = (id) => {
-    for (let obj of genre) {
-      if (obj.id == id) return obj.name;
+    const findGenre = (id) => {
+        for (let obj of genre) {
+            if (obj.id == id) return obj.name;
+        }
+
     }
-  }
-  const backdropStyle = {
-    backgroundColor: 'rgba(0, 0, 0, 0.7)',
-  };
-  const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+    const backdropStyle = {
+        backgroundColor: 'rgba(0, 0, 0, 0.7)',
+    };
+    const [open, setOpen] = React.useState(false);
+    const handleOpen = () => setOpen(true);
+    const handleClose = () => setOpen(false);
 
-  const {setWatchListData,watchListData}=useContext(UserContext)
+    const { setWatchListData, watchListData } = useContext(UserContext)
+    const isAlreadyPresent = (movieId) => {
+        for (let obj of watchListData) {
+            if (movieId === obj.id) return true;
+        }
+        return false;
+    }
+
     const handleWatchlist = () => {
-        let updatedData=[...watchListData,movie]
-      setWatchListData(updatedData);
-      console.log(watchListData)
-    }
+        if (!isAlreadyPresent(movie.id)) {
+            let updatedData = ([...watchListData, movie])
+            setWatchListData(updatedData);
+            toast.success(`Added to watchlist`, { autoClose: 1500 });
+        } else {
+            toast.info(`Already in watchlist`, { autoClose: 1500 });
+        }
+    };
+
     return (
         <>
 
@@ -110,22 +125,33 @@ const SpecialCard = ({movie,index,hoveredIndex,setHoveredIndex}) => {
                                 {movie.title || movie.original_name}
                             </div>
                             <div className='flex ms-8 gap-2'>
-                                <span className='bg-[#414141] px-2 rounded'>
-                                    {movie.release_date}
-                                </span>
                                 {
+                                    (movie.release_date) &&
+                                    <span className='bg-[#414141] px-2 rounded'>
+                                        {movie.release_date.slice(0, 4)}
+                                    </span>
+                                }
+                                {
+
                                     movie.genre_ids.map((id, index) => {
 
                                         if (index >= 0 && index <= 3) {
-                                            return <span key={index} className='bg-[#414141] px-2 rounded'>
-                                                {findGenre(id)}
-                                            </span>
+                                            return <>{findGenre(id) && <span key={index} className='bg-[#414141] px-2 rounded'>
+                                                    {findGenre(id)}
+
+                                                </span>
+                                                }
+                                          </>
+
                                         } else return;
                                     })
                                 }
-                                <span className='bg-[#414141] px-2 rounded'>
-                                    {movie.original_language}
-                                </span>
+                                {(movie.original_language) &&
+                                    <span className='bg-[#414141] px-2 rounded'>
+                                        {movie.original_language}
+                                    </span>
+                                }
+
                                 <span className='bg-[#414141] px-2 rounded'>
                                     U/A 16+
                                 </span>
@@ -137,15 +163,16 @@ const SpecialCard = ({movie,index,hoveredIndex,setHoveredIndex}) => {
 
                             <div className='ps-8 flex gap-6 items-center'>
                                 <button className="bg-red-600 w-[157px] h-12 text-white text-[20px] cursor-pointer py-2 ps-0 pe-4  rounded">
-                                    <PlayArrowIcon fontSize='large' sx={{marginRight:"3px"}}/>
+                                    <PlayArrowIcon fontSize='large' sx={{ marginRight: "3px" }} />
                                     Play
-                                    
+
                                 </button>
-                                <AddCircleOutlinedIcon sx={{fontSize:"50px",cursor:"pointer"}}
-                                onClick={handleWatchlist} 
+                                <AddCircleOutlinedIcon sx={{ fontSize: "50px", cursor: "pointer" }}
+                                    onClick={handleWatchlist}
                                 />
                             </div>
                         </div>
+                        <ToastContainer className="toast-position" />
                     </Box>
                 </Fade>
             </Modal>
