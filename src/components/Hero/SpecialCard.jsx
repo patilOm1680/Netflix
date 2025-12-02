@@ -33,7 +33,7 @@ const SpecialCard = ({ movie, index, hoveredIndex, setHoveredIndex }) => {
     const [isLoading, setIsLoading] = useState(true);
     const [genre, setGenre] = useState([]);
 
-    React.useEffect(() => {
+    useEffect(() => {
         const url = `${import.meta.env.VITE_Genre}?api_key=${import.meta.env.VITE_ApiKey}`
         axios.get(url)
             .then((response) => {

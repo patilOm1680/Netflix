@@ -11,10 +11,11 @@ import AddCircleOutlinedIcon from '@mui/icons-material/AddCircleOutlined';
 import UserContext from '../../context/UserContext';
 import { ToastContainer, toast } from 'react-toastify';
 import "./carsouselCard.css"
-import { minHeight } from '@mui/system';
+// import { minHeight } from '@mui/system';
 import LazyImage from './LazyImage';
 import { useNavigate } from 'react-router-dom';
 import Skeleton from '@mui/material/Skeleton';
+import {AddedToList,AlreadyInList} from "../../Data/messeges"
 
 const style = {
     position: 'absolute',
@@ -33,7 +34,7 @@ const CarouselCard = ({ movie, index, hoveredIndex, setHoveredIndex }) => {
     const [isLoading,setIsLoading]=useState(true);
     const [genre, setGenre] = useState([]);
 
-    React.useEffect(() => {
+    useEffect(() => {
         const url = `${import.meta.env.VITE_Genre}?api_key=${import.meta.env.VITE_ApiKey}`
         axios.get(url)
             .then((response) => {
@@ -77,9 +78,9 @@ const CarouselCard = ({ movie, index, hoveredIndex, setHoveredIndex }) => {
         if (!isAlreadyPresent(movie.id)) {
             let updatedData = ([...watchListData, movie])
             setWatchListData(updatedData);
-            toast.success(`Added to watchlist`, { autoClose: 1500 });
+            toast.success(`${AddedToList}`, { autoClose: 1500 });
         } else {
-            toast.info(`Already in watchlist`, { autoClose: 1500 });
+            toast.info(`${AlreadyInList}`, { autoClose: 1500 });
         }
     };
     const navigate=useNavigate();
