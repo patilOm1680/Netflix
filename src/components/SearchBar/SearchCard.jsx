@@ -27,7 +27,7 @@ const SearchCard = ({ movie, index }) => {
     const [isLoading, setIsLoading] = useState(true);
     const [genre, setGenre] = useState([]);
 
-    React.useEffect(() => {
+    useEffect(() => {
         const url = `${import.meta.env.VITE_Genre}?api_key=${import.meta.env.VITE_ApiKey}`
         axios.get(url)
             .then((response) => {
@@ -51,7 +51,7 @@ const SearchCard = ({ movie, index }) => {
     const backdropStyle = {
         backgroundColor: 'rgba(0, 0, 0, 0.7)',
     };
-    const [open, setOpen] = React.useState(false);
+    const [open, setOpen] = useState(false);
     const handleOpen = () => {
         setIsLoading(true);
         setOpen(true)

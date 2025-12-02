@@ -1,11 +1,8 @@
 import React, { useContext, useEffect } from 'react';
 import Navbar from '../Navbar/Navbar';
-import TrendingNow from '../../components/cardsSections/TrendingNow';
-import PopularNow from '../../components/cardsSections/PopularNow';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import InfoIcon from '@mui/icons-material/Info';
 import TopRatedTV from '../../components/Web-Series-Section/TopRatedTV';
-import UpcomingMovies from '../../components/Movies-Section/UpcomingMovies';
 import Footer from '../Footer/Footer';
 import facebookImg from "../../assets/Footer/Facebook.png"
 import instaImg from "../../assets/Footer/Instagram.png"

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Skeleton, Stack, Grid, Container } from '@mui/material';
+import { Skeleton} from '@mui/material';
 
 const TVshowSkeleton = () => {
   

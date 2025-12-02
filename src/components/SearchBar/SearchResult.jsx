@@ -1,14 +1,30 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Navbar from '../../pages/Navbar/Navbar'
 import { useLocation } from 'react-router-dom'
 import SearchCard from './SearchCard';
+import SearchResultSkeleton from './SearchResultSkeleton';
 
 function SearchResult() {
+    const [isLoading,setIsLoading]=useState(true);
+    useEffect(() => {
+        setTimeout(() => {
+          setIsLoading(false);
+        }, 1500)
+        
+    }, [isLoading]);
+
     const location=useLocation();
     const {Data}=location.state;
 
   return (
     <>
+    {
+        (isLoading)?
+        <SearchResultSkeleton/>
+        :
+    
+
+    <div>
     <Navbar/>
 
     <p className='text-2xl text-white pt-28 px-22 mb-5 font-bold'>Top Results</p>
@@ -24,8 +40,10 @@ function SearchResult() {
             })
         }
     </div>
+    </div>
+    }
     </>
-  )
+  );
 }
 
 export default SearchResult

@@ -2,8 +2,9 @@
 import { Route, Routes } from 'react-router-dom'
 import './App.css'
 import Navbar from './pages/Navbar/Navbar';
-import { useState,lazy,Suspense } from 'react';
+import { useState, lazy, Suspense } from 'react';
 import PlayVideo from './pages/Play/PlayVideo';
+import SearchResultSkeleton from './components/SearchBar/SearchResultSkeleton';
 
 const Home = lazy(() => import("./pages/Home/Home"));
 const Login = lazy(() => import("./components/Fomrs/Login/Login"));
@@ -14,26 +15,21 @@ const MyList = lazy(() => import("./components/MyList/MyList"));
 const SearchNotFound = lazy(() => import("./pages/Search/SearchNotFound"));
 
 function App() {
-  
-      
-
   return (
     <>
-    <Suspense fallback={<div>Loading please wait...</div>}>
-    <Routes>
-      
-
-     
-      <Route path='/' element={<Home/>}/>
-      <Route path='/login' element={<Login/>}/>
-      <Route path='/shows' element={<TVShowPage/>}/>
-      <Route path='/movies' element={<MoviesPage/>}/>
-      <Route path='/search-result' element={<SearchResult/>}/>
-      <Route path='/my-list' element={<MyList/>}/>
-      <Route path='/search-not-found' element={<SearchNotFound/>}/>
-       <Route path='/play' element={<PlayVideo/>}/>
-    </Routes>
-    </Suspense>
+      <Suspense fallback={<div>Loading please wait...</div>}>
+        <Routes>
+          <Route path='/' element={<Home />} />
+          <Route path='/login' element={<Login />} />
+          <Route path='/shows' element={<TVShowPage />} />
+          <Route path='/movies' element={<MoviesPage />} />
+          <Route path='/search-result' element={<SearchResult />} />
+          <Route path='/my-list' element={<MyList />} />
+          <Route path='/search-not-found' element={<SearchNotFound />} />
+          <Route path='/play' element={<PlayVideo />} />
+          <Route path='/test' element={<SearchResultSkeleton/>}/>
+        </Routes>
+      </Suspense>
     </>
   )
 }

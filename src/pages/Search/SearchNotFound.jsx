@@ -2,7 +2,7 @@ import React from 'react'
 import Navbar from '../Navbar/Navbar'
 import { useLocation, useNavigate } from 'react-router-dom'
 
-function SearchNotFound() {
+const SearchNotFound=() =>{
   const location = useLocation();
   const { input } = location.state;
   const navigate=useNavigate();

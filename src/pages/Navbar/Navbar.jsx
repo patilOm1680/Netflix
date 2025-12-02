@@ -1,14 +1,13 @@
 import React, { useContext } from 'react'
 import logo from "../../assets/Home/logo.png"
 import { NavLink, useNavigate } from 'react-router-dom'
-import Box from '@mui/material/Box';
 import Avatar from '@mui/material/Avatar';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
+// import Typography from '@mui/material/Typography';
 import Tooltip from '@mui/material/Tooltip';
 import PersonAdd from '@mui/icons-material/PersonAdd';
 import Settings from '@mui/icons-material/Settings';
@@ -16,7 +15,7 @@ import Logout from '@mui/icons-material/Logout';
 import "./Navbar.css"
 import UserContext from '../../context/UserContext';
 import SearchBar from '../../components/SearchBar/SearchBar';
-import { ToastContainer, toast } from 'react-toastify';
+// import { ToastContainer, toast } from 'react-toastify';
 
 const Navbar = () => {
   const { setIsLogin } = useContext(UserContext)

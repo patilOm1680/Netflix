@@ -1,8 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
 import Navbar from '../Navbar/Navbar'
 import HeroSection from '../../components/Hero/HeroSection'
-import Trending from '../../components/Trending/Trending'
-import Carousel from '../../components/Carousel/Carousel'
 import TrendingNow from '../../components/cardsSections/TrendingNow'
 import PopularNow from '../../components/cardsSections/PopularNow'
 import TopRatedTV from '../../components/Web-Series-Section/TopRatedTV'
@@ -12,7 +10,6 @@ import facebookImg from "../../assets/Footer/Facebook.png"
 import instaImg from "../../assets/Footer/Instagram.png"
 import twitterImg from "../../assets/Footer/Twitter.png"
 import youtubeImg from "../../assets/Footer/YouTube.png"
-import { ToastContainer, toast } from 'react-toastify';
 import UserContext from '../../context/UserContext'
 import TVshowSkeleton from '../TVShows/TVshowSkeleton'
 
