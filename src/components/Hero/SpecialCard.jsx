@@ -27,6 +27,7 @@ const style = {
     border: "2px solid #757574"
 
 };
+
 const SpecialCard = ({ movie, index, hoveredIndex, setHoveredIndex }) => {
 
     const [isLoading, setIsLoading] = useState(true);

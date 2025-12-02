@@ -238,7 +238,7 @@ const CarouselCard = ({ movie, index, hoveredIndex, setHoveredIndex }) => {
                             </div>
 
                             {(movie.overview) &&
-                                <div className='px-8 text-justify max-h-[50px] overflow-hidden'>
+                                <div className='px-8 text-justify max-h-[50px] overflow-hidden line-clamp-2'>
                                     {movie.overview}
                                 </div>
 

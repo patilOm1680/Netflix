@@ -10,7 +10,8 @@ function PlayVideo() {
     const [videoKey,setKey]=useState("");
     
     useEffect(() => {
-        axios.get(`https://api.themoviedb.org/3/movie/${movieId}/videos?api_key=08e5aa051cefb63e37d8363be920afd3`)
+      const url=`${import.meta.env.VITE_VideoKey}/${movieId}/videos?api_key=${import.meta.env.VITE_ApiKey}`
+        axios.get(url)
         .then((response)=>{
             let videoData=response.data.results;
             for(let obj of videoData){
