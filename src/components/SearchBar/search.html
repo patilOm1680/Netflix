@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Redesigned Search Bar</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&amp;family=Roboto:wght@400;500;700&amp;display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet" />
+    <style>
+        .font-logo {
+            font-family: 'Bebas Neue', sans-serif;
+        }
+    </style>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#E50914",
+                        "background-light": "#FFFFFF",
+                        "background-dark": "#141414",
+                    },
+                    fontFamily: {
+                        display: ["Roboto", "sans-serif"],
+                        logo: ["Bebas Neue", "sans-serif"],
+                    },
+                    borderRadius: {
+                        DEFAULT: "0.25rem",
+                    },
+                },
+            },
+        };
+    </script>
+</head>
+
+<body class="bg-background-light dark:bg-background-dark font-display">
+    <header
+        class="bg-background-light bg-opacity-90 dark:bg-background-dark dark:bg-opacity-90 backdrop-blur-sm sticky top-0 z-50">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center space-x-8">
+                    <h1 alt="Streaming service logo" class="text-primary font-logo text-3xl tracking-wider">STREAMER
+                    </h1>
+                    <nav class="hidden md:flex items-center space-x-4">
+                        <a class="text-gray-800 dark:text-white font-bold text-sm relative after:content-[''] after:absolute after:left-0 after:bottom-[-4px] after:w-full after:h-[2px] after:bg-primary"
+                            href="#">Home</a>
+                        <a class="text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-white font-medium text-sm transition-colors"
+                            href="#">TV Shows</a>
+                        <a class="text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-white font-medium text-sm transition-colors"
+                            href="#">Movies</a>
+                        <a class="text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-white font-medium text-sm transition-colors"
+                            href="#">My List</a>
+                    </nav>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <div class="group relative">
+                        <span
+                            class="material-icons-outlined absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 dark:text-gray-500 group-focus-within:text-gray-800 dark:group-focus-within:text-white transition-colors">search</span>
+                        <input
+                            class="bg-transparent border border-gray-400 dark:border-gray-600 rounded-md py-1.5 pl-10 pr-3 w-40 focus:w-64 transition-all duration-300 focus:ring-1 focus:ring-primary focus:border-primary text-gray-800 dark:text-white placeholder-gray-500 dark:placeholder-gray-400"
+                            placeholder="Search..." type="text" />
+                    </div>
+                    <button aria-label="Notifications"
+                        class="text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-white transition-colors">
+                        <span class="material-icons-outlined">notifications</span>
+                    </button>
+                    <div class="relative">
+                        <button aria-label="User profile">
+                            <div
+                                class="w-8 h-8 rounded-md bg-gray-300 dark:bg-gray-700 flex items-center justify-center overflow-hidden">
+                                <img alt="User profile avatar" class="w-full h-full object-cover"
+                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuCQKpRkEjnaFxapuUuTXr4UF_gfhK7x8iZasvRXw91QmVJj-2uYcotwB38czo8wYAyzXwAw-tCORmDIvZlVwHMcZFrCCmWLKZs6Ct2XoreEy6o4KbWwANcfcOOGSdWOJeJsWT3CWLNnIYmcYWoUwBBv_nyWBxPTIViKtjjXaQppU2jz3DH6TTIHsPABUbTZ7OidZkKmazBqiJYPbpZFnha0APgU3fROar1a6Urwm8c5Z8rzJAjvfPyEAAD3MskCLlx1mGQN2jmGRu59" />
+                            </div>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main class="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div class="h-[200vh] text-gray-800 dark:text-gray-200">
+            <h2 class="text-2xl font-bold mb-4">Page Content</h2>
+            <p>Scroll down to see the sticky header in action.</p>
+        </div>
+    </main>
+
+</body>
+
+</html>
