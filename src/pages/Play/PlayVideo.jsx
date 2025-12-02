@@ -8,15 +8,18 @@ function PlayVideo() {
     const {movieId}=location.state;
     // const [videoData, setVideoData]=useState([]);
     const [videoKey,setKey]=useState("");
+    
     useEffect(() => {
         axios.get(`https://api.themoviedb.org/3/movie/${movieId}/videos?api_key=08e5aa051cefb63e37d8363be920afd3`)
         .then((response)=>{
             let videoData=response.data.results;
             for(let obj of videoData){
                 if(obj.type=="Trailer"){
+                    console.log(obj.key)
                     setKey(obj.key);
                     break;
                 }
+                
             }
 
         })

@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import axios from 'axios';
 import Backdrop from '@mui/material/Backdrop';
 import Box from '@mui/material/Box';
@@ -14,6 +14,7 @@ import "./carsouselCard.css"
 import { minHeight } from '@mui/system';
 import LazyImage from './LazyImage';
 import { useNavigate } from 'react-router-dom';
+import Skeleton from '@mui/material/Skeleton';
 
 const style = {
     position: 'absolute',
@@ -29,6 +30,7 @@ const style = {
 
 };
 const CarouselCard = ({ movie, index, hoveredIndex, setHoveredIndex }) => {
+    const [isLoading,setIsLoading]=useState(true);
     const [genre, setGenre] = useState([]);
 
     React.useEffect(() => {
@@ -38,6 +40,13 @@ const CarouselCard = ({ movie, index, hoveredIndex, setHoveredIndex }) => {
                 setGenre(response.data.genres);
             })
     }, []);
+
+    useEffect(() => {
+        setTimeout(() => {
+          setIsLoading(false);
+        }, 1500)
+        
+    }, [isLoading]);
 
 
     const findGenre = (id) => {
@@ -50,7 +59,10 @@ const CarouselCard = ({ movie, index, hoveredIndex, setHoveredIndex }) => {
         backgroundColor: 'rgba(0, 0, 0, 0.7)',
     };
     const [open, setOpen] = React.useState(false);
-    const handleOpen = () => setOpen(true);
+    const handleOpen = () => {
+        setIsLoading(true);
+        setOpen(true)
+    };
     const handleClose = () => setOpen(false);
 
     const { setWatchListData, watchListData } = useContext(UserContext)
@@ -105,6 +117,64 @@ const CarouselCard = ({ movie, index, hoveredIndex, setHoveredIndex }) => {
                 )} */}
             </div>
 
+
+
+            {
+                (isLoading)?
+                <Modal
+                aria-labelledby="transition-modal-title"
+                aria-describedby="transition-modal-description"
+                open={open}
+                onClose={handleClose}
+                closeAfterTransition
+                slots={{ backdrop: Backdrop }}
+                slotProps={{
+                    backdrop: {
+                        timeout: 400,
+                        style: backdropStyle,
+                    },
+                }}
+            >
+                <Fade in={open}>
+                    <Box sx={style} className='pb-3'>
+                        {/* {console.log(movie)} */}
+                        <div className='relative flex flex-col gap-4 bg-black text-white'>
+                            
+                            <div className='relative'>
+                                <Skeleton animation="wave" variant="rectangular" width="100%" height="370px" sx={{backgroundColor:"#5b5c5b"}}/>
+
+                            </div>
+                            <div className='mt-[-23px] top-86 text-5xl font-bold font-serif px-8'>
+                                <Skeleton animation="wave" variant="text" width="350px" height={80} sx={{backgroundColor:"#5b5c5b" }} />
+                            </div>
+                            <div className='mt-[-20px] flex mx-8 gap-2 mt-0 pt-0'>
+                                <Skeleton animation="wave" variant="text" width="70px" height={40} sx={{backgroundColor:"#5b5c5b" }} />
+                                <Skeleton animation="wave" variant="text" width="80px" height={40} sx={{backgroundColor:"#5b5c5b" }} />
+                                <Skeleton animation="wave" variant="text" width="80px" height={40} sx={{backgroundColor:"#5b5c5b" }} />
+                                <Skeleton animation="wave" variant="text" width="80px" height={40} sx={{backgroundColor:"#5b5c5b" }} />
+                                <Skeleton animation="wave" variant="text" width="80px" height={40} sx={{backgroundColor:"#5b5c5b" }} />
+                                
+                            </div>
+                            <div className='mx-8'>
+                                <Skeleton animation="wave" variant="rectangular" width="100%" height="50px" sx={{backgroundColor:"#5b5c5b"}}/>
+                            </div>
+                                
+                            
+
+                            <div className='ps-8 flex gap-6 items-center'>
+                                <Skeleton animation="wave" variant="rectangular" width="150px" height="50px" sx={{backgroundColor:"#5b5c5b"}}/>
+                                <Skeleton animation="wave" variant="circular" width={50} height={50} sx={{backgroundColor:"#5b5c5b"}}/>
+                            </div>
+
+                        </div>
+                        {/* <ToastContainer className="toast-position" /> */}
+                    </Box>
+
+                </Fade>
+
+
+                </Modal>
+            :
             <Modal
                 aria-labelledby="transition-modal-title"
                 aria-describedby="transition-modal-description"
@@ -193,6 +263,8 @@ const CarouselCard = ({ movie, index, hoveredIndex, setHoveredIndex }) => {
 
 
             </Modal>
+            }
+            
 
 
 
