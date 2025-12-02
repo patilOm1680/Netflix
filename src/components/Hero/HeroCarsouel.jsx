@@ -76,11 +76,7 @@ function HeroCarsouel({ topicName, movies }) {
 
       </div>
 
-      <style jsx>{`
-        .scrollbar-hide::-webkit-scrollbar {
-          display: none;
-        }
-      `}</style>
+      
     </div>
   )
 }

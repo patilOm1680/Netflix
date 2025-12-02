@@ -12,7 +12,7 @@ const Trending = () => {
 
   useEffect(() => {
     const fetchTrendingMovies = () => {
-      const url=`${import.meta.env.VITE_TrendingMovies}?api_key=${import.meta.env.VITE_ApiKey}`
+      const url = `${import.meta.env.VITE_TrendingMovies}?api_key=${import.meta.env.VITE_ApiKey}`
       axios.get(url)
         .then((response) => {
           // console.log(response.results)
@@ -64,7 +64,7 @@ const Trending = () => {
                     })}
                 </div>
             </div> */}
-            
+
       <div className=" bg-black px-5">
         <div className="m mx-auto">
           <h2 className="text-white text-2xl font-semibold mb-2">Trending Now</h2>
@@ -83,7 +83,7 @@ const Trending = () => {
             <div
               ref={carouselRef}
               onScroll={handleScroll}
-              className="flex gap-2 overflow-x-scroll scrollbar-hide scroll-smooth"
+              className="flex gap-2 overflow-x-scroll overflow-y-hidden scrollbar-hide scroll-smooth"
               style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
             >
               {trendingMovies.map((movie, index) => {
@@ -109,7 +109,6 @@ const Trending = () => {
               )}
             </div>
 
-            {/* Right Arrow */}
             {showRightButton && (
               <button
                 onClick={() => scroll('right')}
@@ -118,16 +117,13 @@ const Trending = () => {
                 <ChevronRight className="w-10 h-10 text-white" />
               </button>
             )}
+
           </div>
 
 
         </div>
 
-        <style jsx>{`
-                    .scrollbar-hide::-webkit-scrollbar {
-                      display: none;
-                    }
-                  `}</style>
+
       </div>
 
 

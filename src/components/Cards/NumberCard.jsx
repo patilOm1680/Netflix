@@ -66,6 +66,8 @@ function NumberCard({ movie, index }) {
             <div key={index} className="pt-5 relative cursor-pointer" onClick={handleOpen}>
                 <img className="rounded-2xl min-w-[180px] h-[255px]"
                     src={`${import.meta.env.VITE_ImageBaseUrl}${movie.poster_path}`} alt="" />
+
+                    
                 <div className="indexing text-8xl font-bold absolute bottom-2 left-[-20px] text-stroke-white text-black z-50">
                     {index + 1}
                 </div>

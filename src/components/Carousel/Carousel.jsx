@@ -77,11 +77,7 @@ function Carousel({ topicName, movies }) {
 
       </div>
 
-      <style jsx>{`
-        .scrollbar-hide::-webkit-scrollbar {
-          display: none;
-        }
-      `}</style>
+     
       {/* <ToastContainer /> */}
     </div>
   )
