@@ -5,6 +5,8 @@ import Navbar from './pages/Navbar/Navbar';
 import { useState, lazy, Suspense } from 'react';
 import PlayVideo from './pages/Play/PlayVideo';
 import SearchResultSkeleton from './components/SearchBar/SearchResultSkeleton';
+import Profile from './pages/Profile/Profile';
+import Subscription from './pages/Subscription/Subscription';
 
 const Home = lazy(() => import("./pages/Home/Home"));
 const Login = lazy(() => import("./components/Fomrs/Login/Login"));
@@ -27,7 +29,8 @@ function App() {
           <Route path='/my-list' element={<MyList />} />
           <Route path='/search-not-found' element={<SearchNotFound />} />
           <Route path='/play' element={<PlayVideo />} />
-          <Route path='/test' element={<SearchResultSkeleton/>}/>
+          <Route path='/profile' element={<Profile/>}/>
+          <Route path='/subscription' element={<Subscription/>}/>
         </Routes>
       </Suspense>
     </>

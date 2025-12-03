@@ -16,7 +16,7 @@ import "./Navbar.css"
 import UserContext from '../../context/UserContext';
 import SearchBar from '../../components/SearchBar/SearchBar';
 // import { ToastContainer, toast } from 'react-toastify';
-
+import subscriptionIcon from "../../assets/Home/subscriptionIcon.png"
 const Navbar = () => {
   const { setIsLogin } = useContext(UserContext)
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -38,6 +38,15 @@ const Navbar = () => {
   const handleLogoClick = () => {
     navigate('/')
   }
+  const handleProfile = () => {
+    navigate('/profile')
+  }
+
+  const handleSubscription = () => {
+    navigate("/subscription")
+  }
+  
+  
 
 
   return (
@@ -85,7 +94,9 @@ const Navbar = () => {
                   aria-haspopup="true"
                   aria-expanded={open ? 'true' : undefined}
                 >
-                  <Avatar sx={{ width: 32, height: 32 }}>O</Avatar>
+                  <Avatar variant="square" sx={{ width: 32, height: 32 }}>
+                    <img src="https://wallpapers.com/images/hd/netflix-profile-pictures-1000-x-1000-88wkdmjrorckekha.jpg" alt="" />
+                  </Avatar>
                 </IconButton>
               </Tooltip>
               {/* </Box> */}
@@ -126,11 +137,15 @@ const Navbar = () => {
                 transformOrigin={{ horizontal: 'right', vertical: 'top' }}
                 anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
               >
-                <MenuItem onClick={handleClose}>
-                  <Avatar /> {JSON.parse(localStorage.getItem("user")).email}
+                <MenuItem onClick={handleProfile}>
+                  <Avatar variant="square" sx={{ width: 24, height: 24 }}>
+                    <img src="https://wallpapers.com/images/hd/netflix-profile-pictures-1000-x-1000-88wkdmjrorckekha.jpg" alt="" />
+                  </Avatar> Profile
                 </MenuItem>
-                <MenuItem onClick={handleClose}>
-                  <Avatar /> Subscription
+                <MenuItem onClick={handleSubscription}>
+                  <Avatar variant="square" sx={{ width: 24, height: 24,backgroundColor:'white',color:"white" }}>
+                    <img src={subscriptionIcon} alt="" />
+                  </Avatar> Subscription
                 </MenuItem>
                 <Divider />
                 <MenuItem onClick={handleClose}>
