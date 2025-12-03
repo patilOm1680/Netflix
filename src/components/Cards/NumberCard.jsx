@@ -1,6 +1,6 @@
 // import React from 'react'
 import * as React from 'react';
-import { useState,useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import Backdrop from '@mui/material/Backdrop';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
@@ -10,6 +10,7 @@ import shadow from "../../assets/Home/Shadow.png"
 import axios from 'axios';
 import CancelRoundedIcon from '@mui/icons-material/CancelRounded';
 import Skeleton from '@mui/material/Skeleton';
+import imdb from "../../assets/Card/imdb.png"
 
 const style = {
     position: 'absolute',
@@ -17,7 +18,7 @@ const style = {
     left: '50%',
     transform: 'translate(-50%, -50%)',
     width: "668px",
-    height: "610px",
+   minHeight: "610px",
     bgcolor: 'black',
     boxShadow: 24,
     outline: "none",
@@ -61,13 +62,18 @@ function NumberCard({ movie, index }) {
         setOpen(true)
     };
     const handleClose = () => setOpen(false);
+
+    let imdbRating;
+    if (movie.vote_average) {
+        imdbRating = (movie.vote_average.toFixed(1));
+    }
     return (
         <>
             <div key={index} className="pt-5 relative cursor-pointer" onClick={handleOpen}>
                 <img className="rounded-2xl min-w-[180px] h-[255px]"
                     src={`${import.meta.env.VITE_ImageBaseUrl}${movie.poster_path}`} alt="" />
 
-                    
+
                 <div className="indexing text-8xl font-bold absolute bottom-2 left-[-20px] text-stroke-white text-black z-50">
                     {index + 1}
                 </div>
@@ -146,7 +152,7 @@ function NumberCard({ movie, index }) {
                         }}
                     >
                         <Fade in={open}>
-                            <Box sx={style}>
+                            <Box sx={style} className='pb-3'>
                                 <div className='relative flex flex-col gap-4 bg-black text-white'>
                                     <div className='absolute top-2 right-2  z-50 cursor-pointer'>
                                         <CancelRoundedIcon sx={{ fontSize: 40 }} onClick={() => setOpen(false)} />
@@ -159,7 +165,19 @@ function NumberCard({ movie, index }) {
                                     <div className='mt-[-23px] top-86 text-5xl font-bold font-serif ps-8'>
                                         {movie.title.toUpperCase()}
                                     </div>
-                                    <div className='flex ms-8 gap-2'>
+                                    <div className='flex ms-8 gap-2 items-center'>
+                                        {
+                                            (imdbRating) && (
+                                                <>
+                                                    <div >
+                                                        <img src={imdb} alt="" style={{ height: "50px", padding: "0px" }} />
+                                                    </div>
+                                                    <span className='bg-[#414141] px-2 rounded'>
+                                                        {imdbRating}/10
+                                                    </span>
+                                                </>
+                                            )
+                                        }
                                         {
                                             (movie.release_date) &&
                                             <span className='bg-[#414141] px-2 rounded'>
@@ -170,7 +188,7 @@ function NumberCard({ movie, index }) {
 
                                             movie.genre_ids.map((id, index) => {
 
-                                                if (index >= 0 && index <= 3) {
+                                                if (index >= 0 && index < 3) {
                                                     return <>{findGenre(id) && <span key={index} className='bg-[#414141] px-2 rounded'>
                                                         {findGenre(id)}
 

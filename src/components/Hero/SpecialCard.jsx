@@ -13,6 +13,7 @@ import "../Carousel/carsouselCard.css"
 import { ToastContainer, toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 import Skeleton from '@mui/material/Skeleton';
+import imdb from "../../assets/Card/imdb.png"
 
 const style = {
     position: 'absolute',
@@ -89,6 +90,10 @@ const SpecialCard = ({ movie, index, hoveredIndex, setHoveredIndex }) => {
         navigate('/play', { state: { movieId } })
     }
 
+    let imdbRating;
+    if (movie.vote_average) {
+        imdbRating = (movie.vote_average.toFixed(1));
+    }
     return (
         <>
 
@@ -202,7 +207,19 @@ const SpecialCard = ({ movie, index, hoveredIndex, setHoveredIndex }) => {
                                     <div className='mt-[-23px] top-86 text-5xl font-bold font-serif ps-8'>
                                         {movie.title || movie.original_name}
                                     </div>
-                                    <div className='flex ms-8 gap-2'>
+                                    <div className='flex ms-8 gap-2 items-center'>
+                                        {
+                                            (imdbRating) && (
+                                                <>
+                                                    <div >
+                                                        <img src={imdb} alt="" style={{ height: "50px", padding: "0px" }} />
+                                                    </div>
+                                                    <span className='bg-[#414141] px-2 rounded'>
+                                                        {imdbRating}/10
+                                                    </span>
+                                                </>
+                                            )
+                                        }
                                         {
                                             (movie.release_date) &&
                                             <span className='bg-[#414141] px-2 rounded'>
@@ -213,7 +230,7 @@ const SpecialCard = ({ movie, index, hoveredIndex, setHoveredIndex }) => {
 
                                             movie.genre_ids.map((id, index) => {
 
-                                                if (index >= 0 && index <= 3) {
+                                                if (index >= 0 && index < 3) {
                                                     return <>{findGenre(id) && <span key={index} className='bg-[#414141] px-2 rounded'>
                                                         {findGenre(id)}
 
