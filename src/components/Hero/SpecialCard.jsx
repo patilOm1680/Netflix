@@ -21,7 +21,7 @@ const style = {
     left: '50%',
     transform: 'translate(-50%, -50%)',
     width: "668px",
-    height: "610px",
+    minHeight: "610px",
     bgcolor: 'black',
     boxShadow: 24,
     outline: "none",
@@ -194,7 +194,7 @@ const SpecialCard = ({ movie, index, hoveredIndex, setHoveredIndex }) => {
                         }}
                     >
                         <Fade in={open}>
-                            <Box sx={style}>
+                            <Box sx={style} className='pb-3'>
                                 <div className='relative flex flex-col gap-4 bg-black text-white'>
                                     <div className='absolute top-2 right-2  z-50 cursor-pointer'>
                                         <CancelRoundedIcon sx={{ fontSize: 40 }} onClick={() => setOpen(false)} />
