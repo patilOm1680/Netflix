@@ -17,7 +17,6 @@ import { useNavigate } from 'react-router-dom';
 import Skeleton from '@mui/material/Skeleton';
 import { AddedToList, AlreadyInList } from "../../Data/messeges"
 import imdb from "../../assets/Card/imdb.png"
-import SmoothImage from 'react-smooth-image';
 
 const style = {
     position: 'absolute',
@@ -93,7 +92,7 @@ const CarouselCard = ({ movie, index, hoveredIndex, setHoveredIndex }) => {
 
 
     let imdbRating;
-    if (movie.vote_average) {
+    if(movie.vote_average){
         imdbRating = (movie.vote_average.toFixed(1));
     }
 
@@ -127,120 +126,165 @@ const CarouselCard = ({ movie, index, hoveredIndex, setHoveredIndex }) => {
 
 
 
+            {
+                (isLoading) ?
+                    <Modal
+                        aria-labelledby="transition-modal-title"
+                        aria-describedby="transition-modal-description"
+                        open={open}
+                        onClose={handleClose}
+                        closeAfterTransition
+                        slots={{ backdrop: Backdrop }}
+                        slotProps={{
+                            backdrop: {
+                                timeout: 400,
+                                style: backdropStyle,
+                            },
+                        }}
+                    >
+                        <Fade in={open}>
+                            <Box sx={style} className='pb-3'>
+                                {/* {console.log(movie)} */}
+                                <div className='relative flex flex-col gap-4 bg-black text-white'>
+
+                                    <div className='relative'>
+                                        <Skeleton animation="wave" variant="rectangular" width="100%" height="370px" sx={{ backgroundColor: "#5b5c5b" }} />
+
+                                    </div>
+                                    <div className='mt-[-23px] top-86 text-5xl font-bold font-serif px-8'>
+                                        <Skeleton animation="wave" variant="text" width="350px" height={80} sx={{ backgroundColor: "#5b5c5b" }} />
+                                    </div>
+                                    <div className='mt-[-20px] flex mx-8 gap-2 mt-0 pt-0'>
+                                        <Skeleton animation="wave" variant="text" width="70px" height={40} sx={{ backgroundColor: "#5b5c5b" }} />
+                                        <Skeleton animation="wave" variant="text" width="80px" height={40} sx={{ backgroundColor: "#5b5c5b" }} />
+                                        <Skeleton animation="wave" variant="text" width="80px" height={40} sx={{ backgroundColor: "#5b5c5b" }} />
+                                        <Skeleton animation="wave" variant="text" width="80px" height={40} sx={{ backgroundColor: "#5b5c5b" }} />
+                                        <Skeleton animation="wave" variant="text" width="80px" height={40} sx={{ backgroundColor: "#5b5c5b" }} />
+
+                                    </div>
+                                    <div className='mx-8'>
+                                        <Skeleton animation="wave" variant="rectangular" width="100%" height="50px" sx={{ backgroundColor: "#5b5c5b" }} />
+                                    </div>
 
 
-            <Modal
-                aria-labelledby="transition-modal-title"
-                aria-describedby="transition-modal-description"
-                open={open}
-                onClose={handleClose}
-                closeAfterTransition
-                slots={{ backdrop: Backdrop }}
-                slotProps={{
-                    backdrop: {
-                        timeout: 400,
-                        style: backdropStyle,
-                    },
-                }}
-            >
-                <Fade in={open}>
-                    <Box sx={style} className='pb-3'>
-                        {/* {console.log(movie)} */}
-                        <div className='relative flex flex-col gap-4 bg-black text-white'>
-                            <div className='absolute top-2 right-2  z-50 cursor-pointer'>
-                                <CancelRoundedIcon sx={{ fontSize: 40 }} onClick={() => setOpen(false)} />
-                            </div>
-                            <div className='relative'>
-                                <div className='w-full h-[400px] pb-0'>
-                                    <SmoothImage
-                                        src={`${import.meta.env.VITE_ImageBaseUrl}${movie.backdrop_path}`}
 
-                                        alt=""
-                                        transitionTime={1.0}
-                                        height="373px"
-                                    />
+                                    <div className='ps-8 flex gap-6 items-center'>
+                                        <Skeleton animation="wave" variant="rectangular" width="150px" height="50px" sx={{ backgroundColor: "#5b5c5b" }} />
+                                        <Skeleton animation="wave" variant="circular" width={50} height={50} sx={{ backgroundColor: "#5b5c5b" }} />
+                                    </div>
+
                                 </div>
-                                {/* <img className='w-full' src={`${import.meta.env.VITE_ImageBaseUrl}${movie.backdrop_path}`} alt="" /> */}
-                                <img className='w-full absolute bottom-0' src={shadow} alt="shadow" />
+                                {/* <ToastContainer className="toast-position" /> */}
+                            </Box>
 
-                            </div>
-                            <div className='mt-[-23px] top-86 text-5xl font-bold font-serif px-8'>
-                                {movie.title || movie.original_name}
-                            </div>
-                            <div className='flex mx-8 gap-2 items-center'>
-                                {
-                                    (imdbRating) && (
-                                        <>
-                                            <div >
-                                                <img src={imdb} alt="" style={{ height: "50px", padding: "0px" }} />
-                                            </div>
+                        </Fade>
+
+
+                    </Modal>
+                    :
+                    <Modal
+                        aria-labelledby="transition-modal-title"
+                        aria-describedby="transition-modal-description"
+                        open={open}
+                        onClose={handleClose}
+                        closeAfterTransition
+                        slots={{ backdrop: Backdrop }}
+                        slotProps={{
+                            backdrop: {
+                                timeout: 400,
+                                style: backdropStyle,
+                            },
+                        }}
+                    >
+                        <Fade in={open}>
+                            <Box sx={style} className='pb-3'>
+                                {/* {console.log(movie)} */}
+                                <div className='relative flex flex-col gap-4 bg-black text-white'>
+                                    <div className='absolute top-2 right-2  z-50 cursor-pointer'>
+                                        <CancelRoundedIcon sx={{ fontSize: 40 }} onClick={() => setOpen(false)} />
+                                    </div>
+                                    <div className='relative'>
+                                        <img className='w-full' src={`${import.meta.env.VITE_ImageBaseUrl}${movie.backdrop_path}`} alt="" />
+                                        <img className='w-full absolute bottom-0' src={shadow} alt="shadow" />
+
+                                    </div>
+                                    <div className='mt-[-23px] top-86 text-5xl font-bold font-serif px-8'>
+                                        {movie.title || movie.original_name}
+                                    </div>
+                                    <div className='flex mx-8 gap-2 items-center'>
+                                        {
+                                            (imdbRating) && (
+                                                <>
+                                                    <div >
+                                                        <img src={imdb} alt="" style={{ height: "50px", padding: "0px" }} />
+                                                    </div>
+                                                    <span className='bg-[#414141] px-2 rounded'>
+                                                        {imdbRating}/10
+                                                    </span>
+                                                </>
+                                            )
+                                        }
+
+                                        {
+                                            (movie.release_date) &&
                                             <span className='bg-[#414141] px-2 rounded'>
-                                                {imdbRating}/10
+                                                {movie.release_date.slice(0, 4)}
                                             </span>
-                                        </>
-                                    )
-                                }
+                                        }
 
-                                {
-                                    (movie.release_date) &&
-                                    <span className='bg-[#414141] px-2 rounded'>
-                                        {movie.release_date.slice(0, 4)}
-                                    </span>
-                                }
+                                        {(movie.genre_ids.length !== 0) &&
+                                            movie.genre_ids.map((id, index) => {
 
-                                {(movie.genre_ids.length !== 0) &&
-                                    movie.genre_ids.map((id, index) => {
+                                                if (index >= 0 && index < 3) {
+                                                    return <>{findGenre(id) && <span key={index} className='bg-[#414141] px-2 rounded'>
+                                                        {findGenre(id)}
 
-                                        if (index >= 0 && index < 3) {
-                                            return <>{findGenre(id) && <span key={index} className='bg-[#414141] px-2 rounded'>
-                                                {findGenre(id)}
+                                                    </span>
+                                                    }
+                                                    </>
 
+                                                } else return;
+                                            })
+                                        }
+                                        {(movie.original_language) &&
+                                            <span className='bg-[#414141] px-2 rounded'>
+                                                {movie.original_language}
                                             </span>
-                                            }
-                                            </>
-
-                                        } else return;
-                                    })
-                                }
-                                {(movie.original_language) &&
-                                    <span className='bg-[#414141] px-2 rounded'>
-                                        {movie.original_language}
-                                    </span>
-                                }
-                                <span className='bg-[#414141] px-2 rounded'>
-                                    U/A 16+
-                                </span>
+                                        }
+                                        <span className='bg-[#414141] px-2 rounded'>
+                                            U/A 16+
+                                        </span>
 
 
-                            </div>
+                                    </div>
 
-                            {(movie.overview) &&
-                                <div className='px-8 text-justify max-h-[50px] overflow-hidden line-clamp-2'>
-                                    {movie.overview}
+                                    {(movie.overview) &&
+                                        <div className='px-8 text-justify max-h-[50px] overflow-hidden line-clamp-2'>
+                                            {movie.overview}
+                                        </div>
+
+                                    }
+
+                                    <div className='ps-8 flex gap-6 items-center'>
+                                        <button className="bg-red-600 w-[157px] h-12 text-white text-[20px] cursor-pointer py-2 ps-0 pe-4  rounded" onClick={handlePlay}>
+                                            <PlayArrowIcon fontSize='large' sx={{ marginRight: "3px" }} />
+                                            Play
+
+                                        </button>
+                                        <AddCircleOutlinedIcon sx={{ fontSize: "50px", cursor: "pointer" }}
+                                            onClick={handleWatchlist}
+                                        />
+                                    </div>
+
                                 </div>
+                                <ToastContainer className="toast-position" />
+                            </Box>
 
-                            }
-
-                            <div className='ps-8 flex gap-6 items-center'>
-                                <button className="bg-red-600 w-[157px] h-12 text-white text-[20px] cursor-pointer py-2 ps-0 pe-4  rounded" onClick={handlePlay}>
-                                    <PlayArrowIcon fontSize='large' sx={{ marginRight: "3px" }} />
-                                    Play
-
-                                </button>
-                                <AddCircleOutlinedIcon sx={{ fontSize: "50px", cursor: "pointer" }}
-                                    onClick={handleWatchlist}
-                                />
-                            </div>
-
-                        </div>
-                        <ToastContainer className="toast-position" />
-                    </Box>
-
-                </Fade>
+                        </Fade>
 
 
-            </Modal>
-
+                    </Modal>
+            }
 
 
 

@@ -11,7 +11,6 @@ import axios from 'axios';
 import CancelRoundedIcon from '@mui/icons-material/CancelRounded';
 import Skeleton from '@mui/material/Skeleton';
 import imdb from "../../assets/Card/imdb.png"
-import SmoothImage from 'react-smooth-image';
 
 const style = {
     position: 'absolute',
@@ -19,7 +18,7 @@ const style = {
     left: '50%',
     transform: 'translate(-50%, -50%)',
     width: "668px",
-    minHeight: "610px",
+   minHeight: "610px",
     bgcolor: 'black',
     boxShadow: 24,
     outline: "none",
@@ -28,7 +27,7 @@ const style = {
 };
 function NumberCard({ movie, index }) {
 
-    const [isLoading, setIsLoading] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
     const [genre, setGenre] = useState([]);
     useEffect(() => {
         const url = `${import.meta.env.VITE_Genre}?api_key=${import.meta.env.VITE_ApiKey}`
@@ -80,8 +79,62 @@ function NumberCard({ movie, index }) {
                 </div>
             </div>
 
-            
-                
+            {
+                (isLoading) ?
+                    <Modal
+                        aria-labelledby="transition-modal-title"
+                        aria-describedby="transition-modal-description"
+                        open={open}
+                        onClose={handleClose}
+                        closeAfterTransition
+                        slots={{ backdrop: Backdrop }}
+                        slotProps={{
+                            backdrop: {
+                                timeout: 400,
+                                style: backdropStyle,
+                            },
+                        }}
+                    >
+                        <Fade in={open}>
+                            <Box sx={style} className='pb-3'>
+                                {/* {console.log(movie)} */}
+                                <div className='relative flex flex-col gap-4 bg-black text-white'>
+
+                                    <div className='relative'>
+                                        <Skeleton animation="wave" variant="rectangular" width="100%" height="350px" sx={{ backgroundColor: "#5b5c5b" }} />
+
+                                    </div>
+                                    <div className='mt-[-23px] top-86 text-5xl font-bold font-serif px-8'>
+                                        <Skeleton animation="wave" variant="text" width="350px" height={80} sx={{ backgroundColor: "#5b5c5b" }} />
+                                    </div>
+                                    <div className='mt-[-20px] flex mx-8 gap-2 mt-0 pt-0'>
+                                        <Skeleton animation="wave" variant="text" width="70px" height={40} sx={{ backgroundColor: "#5b5c5b" }} />
+                                        <Skeleton animation="wave" variant="text" width="80px" height={40} sx={{ backgroundColor: "#5b5c5b" }} />
+                                        <Skeleton animation="wave" variant="text" width="80px" height={40} sx={{ backgroundColor: "#5b5c5b" }} />
+                                        <Skeleton animation="wave" variant="text" width="80px" height={40} sx={{ backgroundColor: "#5b5c5b" }} />
+                                        <Skeleton animation="wave" variant="text" width="80px" height={40} sx={{ backgroundColor: "#5b5c5b" }} />
+
+                                    </div>
+                                    <div className='mx-8'>
+                                        <Skeleton animation="wave" variant="rectangular" width="100%" height="50px" sx={{ backgroundColor: "#5b5c5b" }} />
+                                    </div>
+
+
+
+                                    <div className='ps-8 flex gap-6 items-center'>
+                                        <Skeleton animation="wave" variant="rectangular" width="150px" height="50px" sx={{ backgroundColor: "#5b5c5b" }} />
+                                        <Skeleton animation="wave" variant="circular" width={50} height={50} sx={{ backgroundColor: "#5b5c5b" }} />
+                                    </div>
+
+                                </div>
+                                {/* <ToastContainer className="toast-position" /> */}
+                            </Box>
+
+                        </Fade>
+
+
+                    </Modal>
+                    :
 
 
                     <Modal
@@ -105,17 +158,7 @@ function NumberCard({ movie, index }) {
                                         <CancelRoundedIcon sx={{ fontSize: 40 }} onClick={() => setOpen(false)} />
                                     </div>
                                     <div className='relative'>
-                                        <div className='w-full h-[400px] pb-0'>
-                                            <SmoothImage    
-                                                src={`${import.meta.env.VITE_ImageBaseUrl}${movie.backdrop_path}`}
-                                            
-                                                alt=""
-                                                transitionTime={1.0}
-                                                height="373px"
-                                            />
-                                        </div>
-
-                                        {/* <img className='w-full' src={`${import.meta.env.VITE_ImageBaseUrl}${movie.backdrop_path}`} alt="" /> */}
+                                        <img className='w-full' src={`${import.meta.env.VITE_ImageBaseUrl}${movie.backdrop_path}`} alt="" />
                                         <img className='w-full absolute bottom-0' src={shadow} alt="shadow" />
 
                                     </div>
@@ -178,7 +221,7 @@ function NumberCard({ movie, index }) {
                             </Box>
                         </Fade>
                     </Modal>
-            
+            }
         </>
     )
 }
