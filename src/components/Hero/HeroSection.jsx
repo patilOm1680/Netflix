@@ -30,7 +30,7 @@ function HeroSection() {
         {/* right side  */}
         <div className=''>
             <div className='relative'>
-                <img className='absolute top-[-70px] right-[140px] rotate-180 w-[768px]' src={shadow} alt="" />
+                <img className='absolute top-[-70px] right-[0px] rotate-180 w-[1162px]' src={shadow} alt="" />
                 <img className='w-[1150px] ms-8' src={homeBanner} alt="" />
             </div>
         </div>

@@ -150,7 +150,7 @@ const CarouselCard = ({ movie, index, hoveredIndex, setHoveredIndex }) => {
                 <div className="relative">
                   <LazyLoadImage
                     alt="img"
-                    effect="opacity"
+                    effect="black-and-white"
                     wrapperProps={{
                       style: { transitionDelay: "0s" },
                     }}
