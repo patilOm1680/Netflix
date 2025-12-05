@@ -4,7 +4,7 @@ import { useInView } from "react-intersection-observer";
 const LazyImage = ({ src, alt, height = 200 }) => {
   const { ref, inView } = useInView({
     triggerOnce: true, 
-    threshold: 0.4    
+    threshold: 0.3    
   });
 
   return (
