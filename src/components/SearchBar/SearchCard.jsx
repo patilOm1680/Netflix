@@ -38,7 +38,7 @@ const SearchCard = ({ movie, index }) => {
     useEffect(() => {
         setTimeout(() => {
             setIsLoading(false);
-        }, 1500)
+        }, 350)
 
     }, [isLoading]);
 

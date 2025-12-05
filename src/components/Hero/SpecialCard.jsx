@@ -45,7 +45,7 @@ const SpecialCard = ({ movie, index, hoveredIndex, setHoveredIndex }) => {
     useEffect(() => {
         setTimeout(() => {
             setIsLoading(false);
-        }, 1500)
+        }, 350)
 
     }, [isLoading]);
 
