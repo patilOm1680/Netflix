@@ -150,7 +150,7 @@ const CarouselCard = ({ movie, index, hoveredIndex, setHoveredIndex }) => {
                 <div className="relative">
                   <LazyLoadImage
                     alt="img"
-                    effect="blur"
+                    effect="opacity"
                     wrapperProps={{
                       style: { transitionDelay: "0s" },
                     }}
@@ -171,6 +171,7 @@ const CarouselCard = ({ movie, index, hoveredIndex, setHoveredIndex }) => {
                     src={shadow}
                     alt="shadow"
                   />
+                  
                 </div>
                 <div className="mt-[-23px] top-86 text-5xl font-bold font-serif px-8">
                   {movie.title || movie.original_name}
