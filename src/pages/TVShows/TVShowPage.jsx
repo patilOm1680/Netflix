@@ -20,7 +20,7 @@ function TVShowPage() {
   useEffect(() => {
     setTimeout(() => {
       setTvShowLoading(false)
-    }, 1000)
+    }, 500)
     
     
   }, [TvshowLoading]);

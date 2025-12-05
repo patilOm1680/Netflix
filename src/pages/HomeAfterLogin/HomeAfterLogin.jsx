@@ -19,7 +19,7 @@ function HomeAfterLogin() {
   useEffect(() => {
     setTimeout(() => {
       setIsHomeLoading(false)
-    }, 1000)
+    }, 500)
 
 
   }, [isHomeLoading]);

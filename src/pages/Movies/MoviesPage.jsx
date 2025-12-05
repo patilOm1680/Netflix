@@ -24,7 +24,7 @@ function MoviesPage() {
   useEffect(() => {
     setTimeout(() => {
       setIsMovieLoading(false)
-    }, 1000)
+    }, 500)
     
     
   }, [isMoviesLoading]);
