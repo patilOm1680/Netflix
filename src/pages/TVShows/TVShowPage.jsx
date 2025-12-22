@@ -30,6 +30,7 @@ function TVShowPage() {
     const movieId="1567451"
       navigate('/play',{state:{movieId}})
     }
+    
   return (
     <>
       {TvshowLoading ? <TVshowSkeleton />
